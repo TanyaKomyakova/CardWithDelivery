@@ -17,32 +17,18 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class DeliveryTest {
 
-
     @Test
-    void checkingCardBooking(){
+    void checkingCardBooking() {
         open("http://localhost:9999");
         SelenideElement form = $("form");
         form.$("[data-test-id=city] input").setValue("Москва");
         form.$(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$(".calendar-input input").setValue("dateMetting");
-        String dateMetting = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String dateMetting = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));;
+        form.$(".calendar-input input").setValue(dateMetting);
         form.$("[data-test-id=name] input").setValue("Комякова Татьяна");
         form.$("[data-test-id=phone] input").setValue("+79631645544");
         form.$("[data-test-id=agreement]").click();
         form.$(".button__text").click();
-        $(withText("Успешно!")).waitUntil(visible,15000);
-
-
-
-
-
-
-
-
-
-
-
+        $(withText("Успешно!")).waitUntil(visible, 15000);
     }
-
-
 }
